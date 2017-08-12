@@ -1,0 +1,3 @@
+[submodule "src/core-modules"]
+	path = src/core-modules
+	url = git@github.com:carlosjunod/CoreModule
