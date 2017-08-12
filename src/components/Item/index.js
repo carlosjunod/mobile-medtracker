@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Button} from 'react-native';
+import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native'
 
 
 class Item extends Component {
@@ -27,8 +27,23 @@ class Item extends Component {
         <Text style={styles.textfield}>
           {this.props.med.alarm}
         </Text>
-        <Button onPress={(e)=>this.deleteMedicine()} title="del" style={styles.button} />
-        <Button onPress={(e)=>this.editMedicine()} title="delete" style={styles.button} />
+
+        {/* delete button */}
+        <TouchableHighlight
+          onPress={(e)=>this.deleteMedicine()}
+          style={[styles.button, styles.delete]}
+        >
+          <Text style={styles.buttonText}> del </Text>
+        </TouchableHighlight>
+
+        {/* edit button */}
+
+        <TouchableHighlight
+          onPress={(e)=>this.deleteMedicine()}
+          style={[styles.button, styles.edit]}
+        >
+          <Text style={styles.buttonText}> edit </Text>
+        </TouchableHighlight>
 
       </View>
     )
@@ -37,14 +52,27 @@ class Item extends Component {
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: 'purple',
-    borderWidth:1,
-    borderColor:'white',
+
   },
 
   textfield: {
 
   },
+
+  button: {
+
+  },
+  delete: {
+    backgroundColor: 'red',
+  },
+
+  edit: {
+    backgroundColor: 'green',
+  },
+
+  buttonText: {
+    color: 'white',
+  }
 })
 
 export default Item

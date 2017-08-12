@@ -31,7 +31,7 @@ const MedicneList = ({ meds, delMed, editMed, editModal }) => (
 
 const styles = StyleSheet.create({
   medicineList: {
-    backgroundColor: 'orange',
+    // backgroundColor: 'orange',
   },
 
 })

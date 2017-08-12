@@ -15,7 +15,6 @@ const store = createStore(medicineReducer, window.__REDUX_DEVTOOLS_EXTENSION__ &
 
 export default class App extends React.Component {
   render() {
-    console.log('lalalal')
     return (
       <Provider store={store} >
         <MedList />

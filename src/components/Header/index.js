@@ -19,18 +19,13 @@ class Header extends Component {
 
 const styles = StyleSheet.create({
   header: {
-    // flex: 1,
-    // backgroundColor: 'gray',
-    // width: '100%',
-    // paddingBottom: 20,
-    // paddingTop: 20,
+    padding: 8,
   },
   h1: {
-    // fontSize: 25,
+    fontSize: 25,
   },
   textfield: {
-    // textAlign: 'center',
-    // width: '100%',
+    textAlign: 'center',
   }
 })
 

@@ -26,21 +26,16 @@ const App = ({
 
 }) => (
   <View style={styles.container}>
-    <Header meds={meds} style={styles.header} />
-    <MedicneList
-      meds={meds}
-      delMed={delMed}
-      editMed={editMed}
-      editModal={editModal}
-      style={styles.list}
-    />
-
-    {/* <Button
-      style={styles.buttonOpen}
-      onClick={openModal}
-      title="add med"
-      color="#841584"
-    /> */}
+    <View style={styles.topContainer}>
+      <Header meds={meds} style={styles.header} />
+      <MedicneList
+        meds={meds}
+        delMed={delMed}
+        editMed={editMed}
+        editModal={editModal}
+        style={styles.list}
+      />
+    </View>
 
     <TouchableHighlight
       onPress={this.openModal}
@@ -65,21 +60,26 @@ const App = ({
 const styles = StyleSheet.create({
   container: {
     paddingTop: 25,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
     flex: 1,
-    flexDirection: 'row',
-    // backgroundColor: 'red',
-    flexWrap: 'wrap',
+    alignSelf: 'stretch',
+    // backgroundColor: 'silver',
+    justifyContent: 'space-between'
   },
-  header: {
-    // flex: 1,
-    // width: '100%',
-  },
+
   buttonOpen: {
     // flex: 1,
-    // backgroundColor: 'green',
+    backgroundColor: 'blue',
+    borderRadius: 10,
+    height: 40,
+    justifyContent: 'center',
+    // alignItem: 'flex-end'
   },
   buttonText: {
-    // flex: 1,
+    color: 'white',
+    textAlign: 'center'
   },
   modal: {
     // flex: 1,
