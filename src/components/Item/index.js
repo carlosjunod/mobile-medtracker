@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View, Button, TouchableHighlight } from 'react-native'
+import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
 
 
 class Item extends Component {
@@ -20,30 +20,40 @@ class Item extends Component {
   render() {
     return (
       <View style={styles.item}>
-        <Text style={styles.textfield}>{this.props.med.name}</Text>
-        <Text style={styles.textfield}>
-          {this.props.med.brand}, {this.props.med.mg}mg
+        <Text style={[styles.textfield, styles.h1]} >
+          {this.props.med.name}
         </Text>
-        <Text style={styles.textfield}>
-          {this.props.med.alarm}
-        </Text>
+        <View style={styles.infoContainer}>
 
-        {/* delete button */}
-        <TouchableHighlight
-          onPress={(e)=>this.deleteMedicine()}
-          style={[styles.button, styles.delete]}
-        >
-          <Text style={styles.buttonText}> del </Text>
-        </TouchableHighlight>
+          <Text style={styles.textfield}>
+            {this.props.med.brand}, {this.props.med.mg}mg
+          </Text>
+          <Text style={styles.textfield}>
+            {this.props.med.alarm}
+          </Text>
 
-        {/* edit button */}
+        </View>
 
-        <TouchableHighlight
-          onPress={(e)=>this.deleteMedicine()}
-          style={[styles.button, styles.edit]}
-        >
-          <Text style={styles.buttonText}> edit </Text>
-        </TouchableHighlight>
+        <View style={styles.buttonWrapper}>
+
+          {/* delete button */}
+          <TouchableHighlight
+            onPress={(e)=>this.deleteMedicine()}
+            style={[styles.button, styles.delete]}
+          >
+            <Text style={styles.buttonText}> del </Text>
+          </TouchableHighlight>
+
+          {/* edit button */}
+
+          <TouchableHighlight
+            onPress={(e)=>this.deleteMedicine()}
+            style={[styles.button, styles.edit]}
+          >
+            <Text style={styles.buttonText}> edit </Text>
+          </TouchableHighlight>
+
+        </View>
 
       </View>
     )
@@ -52,26 +62,46 @@ class Item extends Component {
 
 const styles = StyleSheet.create({
   item: {
-
+    backgroundColor: 'transparent',
+    marginBottom: 5,
   },
 
   textfield: {
+    color: 'white',
+    fontSize: 16,
+  },
 
+  h1: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+
+  infoContainer: {
+    flexDirection: 'row',
+    marginBottom: 4,
+  },
+
+  buttonWrapper: {
+    flexDirection: 'row',
   },
 
   button: {
-
+    // flex: 1,
+    marginRight: 5,
+    padding: 5,
+    width: 100,
   },
   delete: {
-    backgroundColor: 'red',
+    backgroundColor: '#4D4C8F',
   },
 
   edit: {
-    backgroundColor: 'green',
+    backgroundColor: '#64CFB8',
   },
 
   buttonText: {
     color: 'white',
+    textAlign: 'center',
   }
 })
 

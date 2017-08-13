@@ -7,25 +7,66 @@ class Header extends Component {
     // console.log('props: ', this.props.medicines.length);
 
     return (
-      <View style={styles.header}>
-        <Text style={[styles.h1, styles.textfield]}> MedTracker </Text>
-        <Text style={[styles.textfield]}>
-          Today you have {this.props.meds.length} medicines to take today
-        </Text>
+      <View>
+        <Text style={styles.h1}>Med<Text style={styles.bold}>Tracker</Text></Text>
+        <View style={styles.headerContainer}>
+
+          <Text style={styles.textfield}>You have </Text>
+          <View style={styles.numberContainer}>
+            <Text style={styles.number}>
+              {this.props.meds.length}
+            </Text>
+          </View>
+          <Text style={styles.textfield}>to take today</Text>
+
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
-  header: {
-    padding: 8,
-  },
-  h1: {
-    fontSize: 25,
+  headerContainer: {
+    paddingTop: 5,
+    paddingBottom: 5,
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    borderRadius: 14,
+    marginLeft: 50,
+    marginRight: 50,
+    marginBottom: 15,
+    justifyContent: 'center',
   },
   textfield: {
+    backgroundColor: 'transparent',
     textAlign: 'center',
+    color: '#4D4C8F',
+    fontSize: 18,
+  },
+  h1: {
+    fontSize: 28,
+    color: 'white',
+    textAlign: 'center',
+    backgroundColor: 'transparent',
+    marginBottom: 8,
+  },
+
+  bold: {
+    fontWeight: 'bold',
+  },
+
+  numberContainer: {
+    borderRadius: 5,
+    backgroundColor: '#5BCDB4',
+    marginLeft: 2,
+    marginRight: 2,
+    padding: 5,
+  },
+
+  number: {
+    color: 'white',
+    fontWeight: 'bold',
+    lineHeight: 15,
   }
 })
 

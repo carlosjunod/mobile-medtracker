@@ -1,5 +1,7 @@
-import { View, Button, StyleSheet, TouchableHighlight,Text } from 'react-native'
+import { View, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
 import Modal from 'react-native-modal'
+// import LinearGradient from 'react-native-linear-gradient'
+import { LinearGradient } from 'expo'
 
 import React from 'react'
 
@@ -25,7 +27,8 @@ const App = ({
   editModal,
 
 }) => (
-  <View style={styles.container}>
+
+  <LinearGradient colors={['#4d478e', '#55ceb4']} style={styles.container}>
     <View style={styles.topContainer}>
       <Header meds={meds} style={styles.header} />
       <MedicneList
@@ -38,7 +41,12 @@ const App = ({
     </View>
 
     <TouchableHighlight
+      openModal={this.openModal}
       onPress={this.openModal}
+      // onPress={() => Alert.alert(
+      //   'Alert Title',
+      //   'I am here',
+      // )}
       style={styles.buttonOpen}
     >
       <Text style={styles.buttonText}> Add medicine </Text>
@@ -54,32 +62,32 @@ const App = ({
       <Admin addMed={addMed} editMed={editMed} edditing={ui.edditig} closeModal={closeModal} />
       <button onClick={closeModal} className="close-modal">close</button>
     </Modal>
-  </View>
+  </LinearGradient>
+
 )
 
 const styles = StyleSheet.create({
   container: {
     paddingTop: 25,
     paddingBottom: 10,
-    paddingLeft: 10,
-    paddingRight: 10,
     flex: 1,
     alignSelf: 'stretch',
-    // backgroundColor: 'silver',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
 
   buttonOpen: {
-    // flex: 1,
-    backgroundColor: 'blue',
+
+    backgroundColor: 'white',
     borderRadius: 10,
     height: 40,
     justifyContent: 'center',
-    // alignItem: 'flex-end'
+    marginLeft: 10,
+    marginRight: 10,
   },
   buttonText: {
-    color: 'white',
-    textAlign: 'center'
+    fontWeight: 'bold',
+    color: '#55ceb4',
+    textAlign: 'center',
   },
   modal: {
     // flex: 1,
