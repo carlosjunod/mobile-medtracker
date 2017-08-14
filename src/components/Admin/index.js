@@ -6,6 +6,7 @@ import moment from 'moment'
 class Admin extends Component {
 
   state = {
+    ...this.props.edditing,
     isDateTimePickerVisible: false,
   };
 
@@ -15,13 +16,11 @@ class Admin extends Component {
 
   _handleDatePicked = (date) => {
     this.setState({ alarm: new Date(date) })
-    console.log('A date has been picked: ', date)
     this._hideDateTimePicker()
   }
 
   _updateDatePicked = (date) => {
     this.setState({ ...this.props.edditing, alarm: new Date(date) })
-    console.log('A date has been picked: ', date)
     this._hideDateTimePicker()
   }
 
@@ -38,13 +37,13 @@ class Admin extends Component {
     this.state.name,
     this.state.brand,
     this.state.mg,
-    // this.state.alarm,
+    this.state.alarm,
     this.props.edditing.i)
     this.props.editMed(
       this.state.name,
       this.state.brand,
       this.state.mg,
-      // this.state.alarm,
+      this.state.alarm,
       this.props.edditing.i
     )
     this.props.closeModal()
@@ -91,23 +90,14 @@ class Admin extends Component {
               blurOnSubmit={true}
             />
 
-
-            {/* <Text>
-              {moment(this.props.edditing.alarm).format('LT')}
-            </Text> */}
-
-            {/* <TextInput
-              onChangeText={(alarm) => this.setState({ ...this.props.edditing, alarm })}
-              defaultValue={this.props.edditing.alarm}
-              style={styles.input}
-              blurOnSubmit={true}
-            /> */}
-
             <TouchableOpacity
               onPress={this._showDateTimePicker}
               style={[styles.button, styles.setTime]}
             >
-              <Text style={styles.btnText}>Change {moment(this.props.edditing.alarm).format('LT')}</Text>
+              <Text
+                style={styles.btnText} >
+                Change {moment(this.state.alarm).format('LT')}
+              </Text>
             </TouchableOpacity>
 
             <DateTimePicker
@@ -162,7 +152,7 @@ class Admin extends Component {
             onPress={this._showDateTimePicker}
             style={[styles.button, styles.setTime]}
           >
-            <Text style={styles.btnText}>Set Alarm</Text>
+            <Text style={styles.btnText}>Set Alarm ({moment(this.state.alarm).format('LT')})</Text>
           </TouchableOpacity>
 
           <DateTimePicker
