@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native'
+import moment from 'moment'
 
 
 class Item extends Component {
@@ -30,7 +31,7 @@ class Item extends Component {
             {this.props.med.brand}, {this.props.med.mg}mg
           </Text>
           <Text style={styles.textfield}>
-            {this.props.med.alarm}
+            {moment(this.props.med.alarm).format('LT')}
           </Text>
 
         </View>

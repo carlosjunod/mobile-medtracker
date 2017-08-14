@@ -1,12 +1,28 @@
 import React, { Component } from 'react'
-import { View, Text, StyleSheet, TextInput, TouchableHighlight } from 'react-native'
-
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, TouchableOpacity } from 'react-native'
+import DateTimePicker from 'react-native-modal-datetime-picker'
+import moment from 'moment'
 
 class Admin extends Component {
 
+  state = {
+    isDateTimePickerVisible: false,
+  };
 
-  handleName = (name) => {
-    this.setState({ ...this.props.edditing, name })
+  _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true })
+
+  _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false })
+
+  _handleDatePicked = (date) => {
+    this.setState({ alarm: new Date(date) })
+    console.log('A date has been picked: ', date)
+    this._hideDateTimePicker()
+  }
+
+  _updateDatePicked = (date) => {
+    this.setState({ ...this.props.edditing, alarm: new Date(date) })
+    console.log('A date has been picked: ', date)
+    this._hideDateTimePicker()
   }
 
   addMedicne() {
@@ -22,13 +38,13 @@ class Admin extends Component {
     this.state.name,
     this.state.brand,
     this.state.mg,
-    this.state.alarm,
+    // this.state.alarm,
     this.props.edditing.i)
     this.props.editMed(
       this.state.name,
       this.state.brand,
       this.state.mg,
-      this.state.alarm,
+      // this.state.alarm,
       this.props.edditing.i
     )
     this.props.closeModal()
@@ -44,7 +60,10 @@ class Admin extends Component {
 
         <View style={styles.formContainer}>
 
-          <Text style={styles.titleForm}>Edditing</Text>
+          <View style={styles.titleForm}>
+            <Text style={styles.title}>Editing {this.props.edditing.name}</Text>
+          </View>
+
 
           <View style={styles.form}>
 
@@ -52,6 +71,7 @@ class Admin extends Component {
             <TextInput
               onChangeText={(name) => this.setState({ ...this.props.edditing, name })}
               defaultValue={this.props.edditing.name}
+              style={styles.input}
               blurOnSubmit={true}
             />
 
@@ -59,6 +79,7 @@ class Admin extends Component {
             <TextInput
               onChangeText={(brand) => this.setState({ ...this.props.edditing, brand })}
               defaultValue={this.props.edditing.brand}
+              style={styles.input}
               blurOnSubmit={true}
             />
 
@@ -66,21 +87,41 @@ class Admin extends Component {
             <TextInput
               onChangeText={(mg) => this.setState({ ...this.props.edditing, mg })}
               defaultValue={this.props.edditing.mg}
+              style={styles.input}
               blurOnSubmit={true}
             />
 
-            <Text style={styles.label}>alarm</Text>
-            <TextInput
+
+            {/* <Text>
+              {moment(this.props.edditing.alarm).format('LT')}
+            </Text> */}
+
+            {/* <TextInput
               onChangeText={(alarm) => this.setState({ ...this.props.edditing, alarm })}
               defaultValue={this.props.edditing.alarm}
+              style={styles.input}
               blurOnSubmit={true}
+            /> */}
+
+            <TouchableOpacity
+              onPress={this._showDateTimePicker}
+              style={[styles.button, styles.setTime]}
+            >
+              <Text style={styles.btnText}>Change {moment(this.props.edditing.alarm).format('LT')}</Text>
+            </TouchableOpacity>
+
+            <DateTimePicker
+              isVisible={this.state.isDateTimePickerVisible}
+              onConfirm={this._updateDatePicked}
+              onCancel={this._hideDateTimePicker}
+              mode='datetime'
             />
 
             <TouchableHighlight
               style={[styles.button, styles.edit]}
               onPress={this.editMedicine.bind(this)}
             >
-              <Text>Save medicine</Text>
+              <Text style={styles.btnText}>save medicine</Text>
             </TouchableHighlight>
 
           </View>
@@ -115,11 +156,20 @@ class Admin extends Component {
             onChangeText={(mg) => this.setState({ mg })}
             blurOnSubmit={true}
           />
-          <Text style={styles.label}>Alarm</Text>
-          <TextInput
-            style={styles.input}
-            onChangeText={(alarm) => this.setState({ alarm })}
-            blurOnSubmit={true}
+          {/* <Text style={styles.label}>Alarm</Text> */}
+
+          <TouchableOpacity
+            onPress={this._showDateTimePicker}
+            style={[styles.button, styles.setTime]}
+          >
+            <Text style={styles.btnText}>Set Alarm</Text>
+          </TouchableOpacity>
+
+          <DateTimePicker
+            isVisible={this.state.isDateTimePickerVisible}
+            onConfirm={this._handleDatePicked}
+            onCancel={this._hideDateTimePicker}
+            mode='datetime'
           />
 
           <TouchableHighlight
@@ -165,8 +215,9 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: 26,
+    fontSize: 30,
     fontWeight: 'bold',
+    color: '#4d478e'
   },
 
   label: {
@@ -187,7 +238,7 @@ const styles = StyleSheet.create({
 
   button: {
     // flex: 1,
-    backgroundColor: 'green',
+    backgroundColor: '#4d478e',
     padding: 15,
     // alignSelf: 'center',
     borderRadius: 10
@@ -197,6 +248,10 @@ const styles = StyleSheet.create({
     color: 'white',
     // backgroundColor: 'red',
     textAlign: 'center',
+  },
+  setTime: {
+    backgroundColor: '#53F082',
+    marginBottom: 10,
   }
 })
 

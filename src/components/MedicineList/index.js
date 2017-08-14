@@ -8,7 +8,7 @@ const MedicneList = ({ meds, delMed, editMed, editModal }) => (
 
     <Text style={styles.h1}>My medicines</Text>
 
-    {/* {console.log('HERE MEDICINES 💊->', meds)} */}
+    {console.log('HERE MEDICINES 💊->', meds)}
 
     <ScrollView style={styles.containerMed}>
       {/* {console.log(meds)} */}
