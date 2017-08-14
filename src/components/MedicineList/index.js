@@ -11,9 +11,10 @@ const MedicneList = ({ meds, delMed, editMed, editModal }) => (
     {/* {console.log('HERE MEDICINES 💊->', meds)} */}
 
     <ScrollView style={styles.containerMed}>
-
+      {/* {console.log(meds)} */}
       {
         meds.map((med, i) =>
+
           <Item
             key={i}
             i={i}

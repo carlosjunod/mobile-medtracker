@@ -1,6 +1,5 @@
-import { View, StyleSheet, TouchableHighlight, Text, Alert } from 'react-native'
+import { View, StyleSheet, TouchableHighlight, Text, Alert, Button } from 'react-native'
 import Modal from 'react-native-modal'
-// import LinearGradient from 'react-native-linear-gradient'
 import { LinearGradient } from 'expo'
 
 import React from 'react'
@@ -40,27 +39,22 @@ const App = ({
       />
     </View>
 
-    <TouchableHighlight
-      openModal={this.openModal}
-      onPress={this.openModal}
-      // onPress={() => Alert.alert(
-      //   'Alert Title',
-      //   'I am here',
-      // )}
-      style={styles.buttonOpen}
-    >
+    <TouchableHighlight onPress={openModal} style={styles.buttonOpen}>
       <Text style={styles.buttonText}> Add medicine </Text>
     </TouchableHighlight>
 
     <Modal
-      isOpen="true"
+      visible={ui.showModal}
       style={styles.modal}
-      overlayClassName="modal-overlay"
-      contentLabel="add medicine"
+      animationType={'slide'}
+      presentationStyle='formSheet'
     >
-      <Text>hey!</Text>
-      <Admin addMed={addMed} editMed={editMed} edditing={ui.edditig} closeModal={closeModal} />
-      <button onClick={closeModal} className="close-modal">close</button>
+
+      <Admin addMed={addMed} editMed={editMed} edditing={ui.edditig} closeModal={closeModal} style={styles.admin} />
+      <TouchableHighlight onPress={closeModal} style={styles.closeBtn}>
+        <Text style={styles.close}>close</Text>
+      </TouchableHighlight>
+
     </Modal>
   </LinearGradient>
 
@@ -76,7 +70,6 @@ const styles = StyleSheet.create({
   },
 
   buttonOpen: {
-
     backgroundColor: 'white',
     borderRadius: 10,
     height: 40,
@@ -90,9 +83,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   modal: {
-    // flex: 1,
-    // backgroundColor: 'gray',
+    flex: 1,
+    backgroundColor: 'white',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 0 },
+    shadowOpacity: 0.5,
+    shadowRadius: 9,
+    borderRadius: 20,
+
   },
+  closeBtn: {
+    backgroundColor: '#C9262D',
+    position: 'absolute',
+    justifyContent: 'center',
+    top: 0,
+    right: 0,
+    width: 60,
+    height: 60
+  },
+
+  close: {
+    alignSelf: 'center',
+    color: 'white',
+  }
+
 })
 
 export default App

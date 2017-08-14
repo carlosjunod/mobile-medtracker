@@ -8,6 +8,7 @@ class Item extends Component {
   }
 
   editMedicine() {
+    console.log(this.props.med.name)
     // this.props.editMed('new name', 'new brand', 'new mg', 'new alarm', this.props.i)
     this.props.editModal(
       this.props.med.name,
@@ -47,7 +48,7 @@ class Item extends Component {
           {/* edit button */}
 
           <TouchableHighlight
-            onPress={(e)=>this.deleteMedicine()}
+            onPress={(e)=>this.editMedicine()}
             style={[styles.button, styles.edit]}
           >
             <Text style={styles.buttonText}> edit </Text>
